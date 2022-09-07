@@ -10,7 +10,7 @@ The production-control.py file is to add the GUI elements to the program, meanwh
 
 <b> The steps are as followed: </b>
 
-1. Clear Destination Report.
-2. Find & Verify Source Data.
-3. Copy Contents from Source File to Destination.
-4. Check Destination File for Formula Errors.
+1. Clear Destination File Contents.
+2. Find & Verify Source Data File.
+3. Copy Contents from Source to Destination.
+4. Check Destination Report for Formula Errors.
