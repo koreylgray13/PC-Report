@@ -8,7 +8,7 @@ from datetime import datetime as dt
 from functools import cache
 
 
-# Define Variables
+# Define Path Variables
 dataPath = "A:"
 destinationDP = "C:\\Users\\kgray\\Herff Jones\\HJ Indy Data - Documents\\Production Control.xlsx"
 destinationFP = "C:\\Users\\kgray\\Herff Jones\\HJ Indy Data - Documents\\Production Control_FP.xlsx"
@@ -21,7 +21,7 @@ def clearDP():
     destFileDP = openpyxl.load_workbook(destinationDP)
     destSheetDP = destFileDP['ALL JOBS']
 
-    # Clear Previous Data
+    # Loop Through Cells & Clear Previous Data
     for a in destSheetDP['F2':'BF3000']:
         for cell in a:
             cell.value = None
@@ -37,7 +37,7 @@ def clearFP():
     destFileFP = openpyxl.load_workbook(destinationFP)
     destSheetFP = destFileFP['All Jobs_FP']
 
-    # Clear Previous Data
+    # Loop Through Cells & Clear Previous Data
     for a in destSheetFP['E2':'BF3000']:
         for cell in a:
             cell.value = None
@@ -53,6 +53,7 @@ def findFileDP():
     global targetFileDP
     # Change Directories & Identify Target File
     os.chdir(dataPath)
+    # Find Highest Numbered Report
     targetFileDP = max(glob.glob("DP_All_Jobs_Report*.csv"))
     return targetFileDP
 
@@ -62,6 +63,7 @@ def findFileFP():
     global targetFileFP
     # Identify Target File
     os.chdir(dataPath)
+    # Find Highest Numbered Report
     targetFileFP = max(glob.glob("FP_All_Jobs_Report*.csv"))
     return targetFileFP
 
@@ -143,7 +145,7 @@ def reportDP():
     ws.range('F2').options(index=False, header=False).value = dfSourceDP
 
     # Save & Close
-    # wb.save(destinationDP)
+    wb.save(destinationDP)
     wb.close()
 
     # Closing Response
@@ -167,7 +169,7 @@ def reportFP():
     ws.range('E2').options(index=False, header=False).value = dfSourceFP
 
     # Save & Close
-    # wb.save(destinationFP)
+    wb.save(destinationFP)
     wb.close()
 
     # Closing Response
